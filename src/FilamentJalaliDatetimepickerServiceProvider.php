@@ -4,13 +4,13 @@ namespace Ariaieboy\FilamentJalaliDatetimepicker;
 
 use Filament\PluginServiceProvider;
 use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class FilamentJalaliDatetimepickerServiceProvider extends PluginServiceProvider
 {
     protected array $beforeCoreScripts = [
         'my-package-scripts' => __DIR__ . '/../resources/dist/js/jalali-date-time-picker.js',
     ];
+
     public function configurePackage(Package $package): void
     {
         /*
