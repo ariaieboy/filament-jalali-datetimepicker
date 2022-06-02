@@ -1,0 +1,11 @@
+{
+    "dependencies": {
+        "@zoomit/dayjs-jalali-plugin": "^0.0.6",
+        "dayjs": "^1.11.2",
+        "laravel-mix": "^6.0.37"
+    },
+    "scripts": {
+        "build": "mix --production",
+        "watch": "mix watch"
+    }
+}
