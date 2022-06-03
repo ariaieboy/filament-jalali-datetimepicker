@@ -4,26 +4,14 @@ import localeData from 'dayjs/plugin/localeData'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import jalali from '@zoomit/dayjs-jalali-plugin'
+import event from "../../../vendor/livewire/livewire/js/action/event";
 
 dayjs.extend(jalali)
 dayjs.extend(customParseFormat)
 dayjs.extend(localeData)
 dayjs.extend(timezone)
 dayjs.extend(utc)
-dayjs.extend((option, Dayjs, dayjs) => {
-    const listeners = []
-
-    dayjs.addLocaleListeners = (listener) => listeners.push(listener)
-    dayjs.onLocaleUpdated = () => {
-        listeners.forEach((listener) => listener())
-    }
-    dayjs.updateLocale = (locale) => {
-        dayjs.locale(locale)
-        // Emit the `localeUpdated` event that we can bind to later
-        dayjs.onLocaleUpdated()
-    }
-})
-dayjs.calendar('jalali');
+dayjs.calendar('jalali')
 window.dayjs = dayjs
 export default (Alpine) => {
     Alpine.data('jalaliDateTimePickerFormComponent', ({
@@ -31,6 +19,7 @@ export default (Alpine) => {
                                                           firstDayOfWeek,
                                                           isAutofocused,
                                                           state,
+                                                          locale
                                                       }) => {
         const timezone = dayjs.tz.guess()
 
@@ -50,6 +39,8 @@ export default (Alpine) => {
             hour: null,
 
             isClearingState: false,
+
+            locale,
 
             minute: null,
 
@@ -88,12 +79,6 @@ export default (Alpine) => {
                 if (isAutofocused) {
                     this.$nextTick(() => this.openPicker())
                 }
-
-                dayjs.addLocaleListeners(() => {
-                    this.setDisplayText()
-                    this.setMonths()
-                    this.setDayLabels()
-                })
 
                 this.$watch('focusedMonth', () => {
                     this.focusedMonth = +this.focusedMonth
@@ -330,6 +315,7 @@ export default (Alpine) => {
             },
 
             getDayLabels: function () {
+                dayjs.locale(this.locale)
                 const labels = dayjs.weekdaysShort()
 
                 if (firstDayOfWeek === 0) {
@@ -387,11 +373,11 @@ export default (Alpine) => {
             },
 
             setDisplayText: function () {
-                this.displayText = this.getSelectedDate() ? this.getSelectedDate().format(displayFormat) : ''
+                this.displayText = this.getSelectedDate() ? this.getSelectedDate().locale(this.locale).format(displayFormat) : ''
             },
 
             setMonths: function () {
-                if (dayjs.locale() === 'en') {
+                if (this.locale === 'en') {
                     this.months = [
                         "Farvardin",
                         "Ordibehesht",
@@ -406,7 +392,7 @@ export default (Alpine) => {
                         "Bahman",
                         "Esfand"
                     ];
-                } else if (dayjs.locale() === 'fa') {
+                } else if (this.locale === 'fa') {
                     this.months = [
                         "فروردین",
                         "اردیبهشت",
