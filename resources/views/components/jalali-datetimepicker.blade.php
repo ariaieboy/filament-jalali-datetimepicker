@@ -24,7 +24,7 @@
             displayFormat: '{{ convert_date_format($getDisplayFormat())->to('day.js') }}',
             firstDayOfWeek: {{ $getFirstDayOfWeek() }},
             isAutofocused: {{ $isAutofocused() ? 'true' : 'false' }},
-            state: '',
+            state: $wire.{{ $applyStateBindingModifiers('entangle(\'' . $getStatePath() . '\')') }},
         })"
         x-on:click.away="closePicker()"
         x-on:keydown.escape.stop="closePicker()"

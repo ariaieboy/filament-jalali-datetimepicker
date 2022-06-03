@@ -14,24 +14,24 @@ dayjs.extend((option, Dayjs, dayjs) => {
     const listeners = []
 
     dayjs.addLocaleListeners = (listener) => listeners.push(listener)
-    dayjs.onLocaleUpdated = () => { listeners.forEach((listener) => listener()) }
+    dayjs.onLocaleUpdated = () => {
+        listeners.forEach((listener) => listener())
+    }
     dayjs.updateLocale = (locale) => {
         dayjs.locale(locale)
-
         // Emit the `localeUpdated` event that we can bind to later
         dayjs.onLocaleUpdated()
     }
 })
-dayjs.calendar('jalali')
+dayjs.calendar('jalali');
 window.dayjs = dayjs
-
 export default (Alpine) => {
     Alpine.data('jalaliDateTimePickerFormComponent', ({
-        displayFormat,
-        firstDayOfWeek,
-        isAutofocused,
-        state,
-    }) => {
+                                                          displayFormat,
+                                                          firstDayOfWeek,
+                                                          isAutofocused,
+                                                          state,
+                                                      }) => {
         const timezone = dayjs.tz.guess()
 
         return {
@@ -110,13 +110,13 @@ export default (Alpine) => {
                         this.focusedYear = this.focusedYear.substring(0, 4)
                     }
 
-                    if ((! this.focusedYear) || (this.focusedYear?.length !== 4)) {
+                    if ((!this.focusedYear) || (this.focusedYear?.length !== 4)) {
                         return
                     }
 
                     let year = +this.focusedYear
 
-                    if (! Number.isInteger(year)) {
+                    if (!Number.isInteger(year)) {
                         year = dayjs().tz(timezone).year()
 
                         this.focusedYear = year
@@ -125,7 +125,6 @@ export default (Alpine) => {
                     if (this.focusedDate.year() === year) {
                         return
                     }
-                    console.log(dayjs(year).year())
                     this.focusedDate = this.focusedDate.year(year)
                 })
 
@@ -151,7 +150,7 @@ export default (Alpine) => {
                 this.$watch('hour', () => {
                     let hour = +this.hour
 
-                    if (! Number.isInteger(hour)) {
+                    if (!Number.isInteger(hour)) {
                         this.hour = 0
                     } else if (hour > 23) {
                         this.hour = 0
@@ -173,7 +172,7 @@ export default (Alpine) => {
                 this.$watch('minute', () => {
                     let minute = +this.minute
 
-                    if (! Number.isInteger(minute)) {
+                    if (!Number.isInteger(minute)) {
                         this.minute = 0
                     } else if (minute > 59) {
                         this.minute = 0
@@ -195,7 +194,7 @@ export default (Alpine) => {
                 this.$watch('second', () => {
                     let second = +this.second
 
-                    if (! Number.isInteger(second)) {
+                    if (!Number.isInteger(second)) {
                         this.second = 0
                     } else if (second > 59) {
                         this.second = 0
@@ -358,7 +357,7 @@ export default (Alpine) => {
             getSelectedDate: function () {
                 let date = dayjs(this.state)
 
-                if (! date.isValid()) {
+                if (!date.isValid()) {
                     return null
                 }
 
@@ -392,7 +391,39 @@ export default (Alpine) => {
             },
 
             setMonths: function () {
-                this.months = dayjs.months()
+                if (dayjs.locale() === 'en') {
+                    this.months = [
+                        "Farvardin",
+                        "Ordibehesht",
+                        "Khordaad",
+                        "Tir",
+                        "Mordaad",
+                        "Shahrivar",
+                        "Mehr",
+                        "Aabaan",
+                        "Aazar",
+                        "Dey",
+                        "Bahman",
+                        "Esfand"
+                    ];
+                } else if (dayjs.locale() === 'fa') {
+                    this.months = [
+                        "فروردین",
+                        "اردیبهشت",
+                        "خرداد",
+                        "تیر",
+                        "مرداد",
+                        "شهریور",
+                        "مهر",
+                        "آبان",
+                        "آذر",
+                        "دی",
+                        "بهمن",
+                        "اسفند"
+                    ];
+                } else {
+                    this.months = dayjs.months()
+                }
             },
 
             setDayLabels: function () {
@@ -431,6 +462,7 @@ export default (Alpine) => {
                     .hour(this.hour ?? 0)
                     .minute(this.minute ?? 0)
                     .second(this.second ?? 0)
+                    .calendar('gregory')
                     .format('YYYY-MM-DD HH:mm:ss')
 
                 this.setDisplayText()
