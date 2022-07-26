@@ -2,10 +2,9 @@
     "dependencies": {
         "@zoomit/dayjs-jalali-plugin": "^0.0.6",
         "dayjs": "^1.11.2",
-        "laravel-mix": "^6.0.37"
+        "esbuild": "^0.14.50"
     },
     "scripts": {
-        "build": "mix --production",
-        "watch": "mix watch"
+        "esbuild": "esbuild resources/js/index.js --bundle --minify --outfile=resources/dist/js/jalali-date-time-picker.js"
     }
 }
