@@ -4,7 +4,6 @@ import localeData from 'dayjs/plugin/localeData'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import jalali from '@zoomit/dayjs-jalali-plugin'
-import event from "../../../vendor/livewire/livewire/js/action/event";
 
 dayjs.extend(jalali)
 dayjs.extend(customParseFormat)
