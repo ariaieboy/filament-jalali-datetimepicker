@@ -2,6 +2,10 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 1.1.0 - 2022-09-13
+
+add php 8.2 support
+
 ## 1.0.2 - 2022-08-14
 
 ### What's Changed
