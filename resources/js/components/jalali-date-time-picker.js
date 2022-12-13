@@ -1,9 +1,13 @@
+// author: https://ariaieboy.ir
 import dayjs from 'dayjs/esm'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import localeData from 'dayjs/plugin/localeData'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import jalali from '@zoomit/dayjs-jalali-plugin'
+import 'dayjs/locale/fa'
+import 'dayjs/locale/ar'
+
 
 dayjs.extend(customParseFormat)
 dayjs.extend(localeData)
@@ -55,7 +59,7 @@ export default (Alpine) => {
                 months: [],
 
                 init: function () {
-
+                    dayjs.locale(locale ?? 'en');
                     this.focusedDate = dayjs().tz(timezone)
 
                     let date =
@@ -427,7 +431,7 @@ export default (Alpine) => {
                 },
 
                 setMonths: function () {
-                    if (this.locale === 'en') {
+                    if (locale === 'en') {
                         this.months = [
                             "Farvardin",
                             "Ordibehesht",
@@ -442,7 +446,7 @@ export default (Alpine) => {
                             "Bahman",
                             "Esfand"
                         ];
-                    } else if (this.locale === 'fa') {
+                    } else if (locale === 'fa') {
                         this.months = [
                             "فروردین",
                             "اردیبهشت",
