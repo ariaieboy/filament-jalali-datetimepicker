@@ -2,6 +2,14 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 1.2.1 - 2022-12-13
+
+### What's Changed
+
+- fix locale not loading by @ariaieboy in https://github.com/ariaieboy/filament-jalali-datetimepicker/pull/8
+
+**Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/1.2.0...1.2.1
+
 ## 1.2.0 - 2022-12-12
 
 ### What's Changed
