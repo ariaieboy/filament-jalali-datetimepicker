@@ -2,6 +2,10 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 1.2.2 - 2023-01-11
+
+add laravel 10
+
 ## 1.2.1 - 2022-12-13
 
 ### What's Changed
