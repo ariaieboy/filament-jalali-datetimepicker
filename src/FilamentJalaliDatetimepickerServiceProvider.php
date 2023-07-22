@@ -2,14 +2,21 @@
 
 namespace Ariaieboy\FilamentJalaliDatetimepicker;
 
-use Filament\PluginServiceProvider;
+use Closure;
+use Filament\Support\Assets\AlpineComponent;
+use Filament\Support\Assets\Js;
+use Filament\Support\Facades\FilamentAsset;
 use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentJalaliDatetimepickerServiceProvider extends PluginServiceProvider
+class FilamentJalaliDatetimepickerServiceProvider extends PackageServiceProvider
 {
-    protected array $beforeCoreScripts = [
-        'my-package-scripts' => __DIR__ . '/../resources/dist/js/jalali-date-time-picker.js',
-    ];
+    public function bootingPackage(): void
+    {
+        FilamentAsset::register([
+            AlpineComponent::make('jalali-datetime-picker', __DIR__ . '/../resources/dist/js/jalali-date-time-picker.js')
+        ], package: "ariaieboy/jalali-datetime-picker");
+    }
 
     public function configurePackage(Package $package): void
     {
