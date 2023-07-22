@@ -2,6 +2,13 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 2.0.0 - 2023-07-22
+
+- Filament v3 support
+- add `jalali()` method to `DatePicker` and `DateTimePicker` classes
+
+**Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/1.2.2...2.0.0
+
 ## 1.2.2 - 2023-01-11
 
 add laravel 10
