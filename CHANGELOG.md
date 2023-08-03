@@ -2,6 +2,12 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 2.0.2 - 2023-08-03
+
+- fix Persian calendar view
+
+**Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/2.0.1...2.0.2
+
 ## 2.0.1 - 2023-08-03
 
 ### What's Changed
