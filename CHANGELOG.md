@@ -2,6 +2,14 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 2.0.1 - 2023-08-03
+
+### What's Changed
+
+- fix view to work with latest filament v3 release by @ariaieboy in https://github.com/ariaieboy/filament-jalali-datetimepicker/pull/12
+
+**Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/2.0.0...2.0.1
+
 ## 2.0.0 - 2023-07-22
 
 - Filament v3 support
