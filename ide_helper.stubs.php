@@ -1,0 +1,28 @@
+<?php
+
+namespace Filament\Forms\Components {
+
+    use Ariaieboy\FilamentJalaliDatetimepicker\FilamentJalaliDatetimepickerServiceProvider;
+
+    class DatePicker
+    {
+        /**
+         * @source FilamentJalaliDatetimepickerServiceProvider.php:21
+         */
+        public function jalali(): self
+        {
+            return $this;
+        }
+    }
+
+    class DateTimePicker
+    {
+        /**
+         * @source FilamentJalaliDatetimepickerServiceProvider.php:25
+         */
+        public function jalali(): self
+        {
+            return $this;
+        }
+    }
+}
