@@ -2,6 +2,13 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 2.0.3 - 2023-09-02
+
+- fix month selector drop down dark mode
+- add ode_helper for `jalali()` macro
+
+**Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/2.0.2...2.0.3
+
 ## 2.0.2 - 2023-08-03
 
 - fix Persian calendar view
