@@ -17,11 +17,14 @@ class FilamentJalaliDatetimepickerServiceProvider extends PackageServiceProvider
             AlpineComponent::make('jalali-datetime-picker', __DIR__ . '/../resources/dist/js/jalali-date-time-picker.js'),
         ], package: "ariaieboy/jalali-datetime-picker");
         DatePicker::macro('jalali', function () {
+            /** @var DatePicker $this */
             $this->view = "filament-jalali-datetimepicker::components.jalali-datetimepicker";
 
             return $this;
         });
         DateTimePicker::macro('jalali', function () {
+            /** @var DateTimePicker $this */
+            
             $this->view = "filament-jalali-datetimepicker::components.jalali-datetimepicker";
 
             return $this;
