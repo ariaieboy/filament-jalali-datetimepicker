@@ -2,6 +2,18 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 2.0.4 - 2023-09-14
+
+### What's Changed
+
+- Bump actions/checkout from 3 to 4 by @dependabot in https://github.com/ariaieboy/filament-jalali-datetimepicker/pull/14
+
+### New Contributors
+
+- @dependabot made their first contribution in https://github.com/ariaieboy/filament-jalali-datetimepicker/pull/14
+
+**Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/2.0.3...2.0.4
+
 ## 2.0.3 - 2023-09-02
 
 - fix month selector drop down dark mode
