@@ -24,7 +24,7 @@ class FilamentJalaliDatetimepickerServiceProvider extends PackageServiceProvider
         });
         DateTimePicker::macro('jalali', function () {
             /** @var DateTimePicker $this */
-            
+
             $this->view = "filament-jalali-datetimepicker::components.jalali-datetimepicker";
 
             return $this;
