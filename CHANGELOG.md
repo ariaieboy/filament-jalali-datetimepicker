@@ -2,6 +2,15 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 2.0.6 - 2023-12-01
+
+### What's Changed
+
+* Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/ariaieboy/filament-jalali-datetimepicker/pull/15
+* fix calendar placement in filter dropdown by @ariaieboy in https://github.com/ariaieboy/filament-jalali-datetimepicker/pull/18
+
+**Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/2.0.5...2.0.6
+
 ## 2.0.4 - 2023-09-14
 
 ### What's Changed
