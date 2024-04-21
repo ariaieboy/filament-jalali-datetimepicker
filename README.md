@@ -2,7 +2,7 @@
 
 ![Ariaieboy Jalali Date Picker](https://preview.dragon-code.pro/Ariaieboy/Jalali-Date-Picker.svg?brand=laravel)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ariaieboy/filament-jalali-datetimepicker.svg?style=flat-square)](https://packagist.org/packages/ariaieboy/filament-jalali-datetimepicker)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/ariaieboy/filament-jalali-datetimepicker/Check%20&%20fix%20styling?label=code%20style)](https://github.com/ariaieboy/filament-jalali-datetimepicker/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/ariaieboy/filament-jalali-datetimepicker/php-cs-fixer.yml?label=styling)
 [![Total Downloads](https://img.shields.io/packagist/dt/ariaieboy/filament-jalali-datetimepicker.svg?style=flat-square)](https://packagist.org/packages/ariaieboy/filament-jalali-datetimepicker)
 
 This package adds jalali support to filament v3 `DatePicker` and `DateTimePicker`.
