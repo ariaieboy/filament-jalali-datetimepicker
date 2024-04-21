@@ -16,17 +16,21 @@ class FilamentJalaliDatetimepickerServiceProvider extends PackageServiceProvider
         FilamentAsset::register([
             AlpineComponent::make('jalali-datetime-picker', __DIR__ . '/../resources/dist/js/jalali-date-time-picker.js'),
         ], package: "ariaieboy/jalali-datetime-picker");
-        DatePicker::macro('jalali', function () {
+        DatePicker::macro('jalali', function (bool $weekdaysShort = false) {
             /** @var DatePicker $this */
             $this->view = "filament-jalali-datetimepicker::components.jalali-datetimepicker";
-
+            $this->extraAttributes(['data-weekdays-short' => $weekdaysShort]);
+            $this->firstDayOfWeek(6);
+            $this->displayFormat('Y/m/d');
             return $this;
         });
-        DateTimePicker::macro('jalali', function () {
+        DateTimePicker::macro('jalali', function (bool $weekdaysShort = false) {
             /** @var DateTimePicker $this */
 
             $this->view = "filament-jalali-datetimepicker::components.jalali-datetimepicker";
-
+            $this->extraAttributes(['data-weekdays-short' => $weekdaysShort]);
+            $this->firstDayOfWeek(6);
+            $this->displayFormat('Y/m/d H:i:s');
             return $this;
         });
     }

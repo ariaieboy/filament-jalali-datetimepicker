@@ -351,7 +351,11 @@ export default function jalaliDateTimePickerFormComponent({
         },
 
         getDayLabels: function () {
-            const labels = dayjs.weekdaysShort()
+            let flag = this.$el.dataset.weekdaysShort;
+            let labels = dayjs.weekdays()
+            if (flag){
+                labels = dayjs.weekdaysShort()
+            }
 
             if (firstDayOfWeek === 0) {
                 return labels
