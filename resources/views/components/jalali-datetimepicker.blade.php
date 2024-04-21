@@ -12,6 +12,7 @@
     $suffixIcon = $getSuffixIcon();
     $suffixLabel = $getSuffixLabel();
     $statePath = $getStatePath();
+    $months = trans('filament-jalali-datetimepicker::months')
 @endphp
 
 <x-dynamic-component :component="$getFieldWrapperView()" :field="$field">
@@ -40,6 +41,7 @@
                             locale: @js(app()->getLocale()),
                             shouldCloseOnDateSelection: @js($shouldCloseOnDateSelection()),
                             state: $wire.{{ $applyStateBindingModifiers("entangle('{$statePath}')") }},
+                            months:@js($months)
                         })"
                     x-on:keydown.esc="isOpen() && $event.stopPropagation()"
                     {{

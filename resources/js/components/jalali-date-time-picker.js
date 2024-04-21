@@ -17,13 +17,14 @@ dayjs.registerCalendarSystem("persian", new PersianCalendarSystem());
 window.dayjs = dayjs
 
 export default function jalaliDateTimePickerFormComponent({
-                                                        displayFormat,
-                                                        firstDayOfWeek,
-                                                        isAutofocused,
-                                                        locale,
-                                                        shouldCloseOnDateSelection,
-                                                        state,
-                                                    }) {
+                                                              displayFormat,
+                                                              firstDayOfWeek,
+                                                              isAutofocused,
+                                                              locale,
+                                                              shouldCloseOnDateSelection,
+                                                              state,
+                                                              months
+                                                          }) {
     const timezone = dayjs.tz.guess()
 
     return {
@@ -51,10 +52,10 @@ export default function jalaliDateTimePickerFormComponent({
 
         dayLabels: [],
 
-        months: [],
+        months,
 
         init: function () {
-            dayjs.locale(locales[locale]??locales['en']);
+            dayjs.locale(locales[locale] ?? locales['en']);
             this.focusedDate = dayjs().tz(timezone)
 
             let date =
@@ -426,37 +427,7 @@ export default function jalaliDateTimePickerFormComponent({
         },
 
         setMonths: function () {
-            if (locale === 'en') {
-                this.months = [
-                    "Farvardin",
-                    "Ordibehesht",
-                    "Khordaad",
-                    "Tir",
-                    "Mordaad",
-                    "Shahrivar",
-                    "Mehr",
-                    "Aabaan",
-                    "Aazar",
-                    "Dey",
-                    "Bahman",
-                    "Esfand"
-                ];
-            } else if (locale === 'fa') {
-                this.months = [
-                    "فروردین",
-                    "اردیبهشت",
-                    "خرداد",
-                    "تیر",
-                    "مرداد",
-                    "شهریور",
-                    "مهر",
-                    "آبان",
-                    "آذر",
-                    "دی",
-                    "بهمن",
-                    "اسفند"
-                ];
-            } else {
+            if (typeof this.months !== 'object' || !Array.isArray(this.months) || this.months === null) {
                 this.months = dayjs.months()
             }
         },

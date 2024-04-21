@@ -40,6 +40,7 @@ class FilamentJalaliDatetimepickerServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('filament-jalali-datetimepicker')
+            ->hasTranslations()
             ->hasViews();
     }
 }
