@@ -25,7 +25,7 @@ use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDatePicker;
 use Ariaieboy\FilamentJalaliDatetimepicker\Forms\Components\JalaliDateTimePicker;
 \Filament\Forms\Components\DatePicker::make('birth_date')->jalali();
 
-\Filament\Forms\Components\DateTimePicker::make('birth_date')->jalali();
+\Filament\Forms\Components\DateTimePicker::make('birth_date')->jalali(weekdaysShort: true);
 ```
 
 for more information check the default DateTimePicker
