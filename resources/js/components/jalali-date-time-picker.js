@@ -4,14 +4,15 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import localeData from 'dayjs/plugin/localeData'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
-import jalali from '@zoomit/dayjs-jalali-plugin'
+import calendarSystems from "@calidy/dayjs-calendarsystems";
+import PersianCalendarSystem from "@calidy/dayjs-calendarsystems/calendarSystems/PersianCalendarSystem";
 
 dayjs.extend(customParseFormat)
 dayjs.extend(localeData)
 dayjs.extend(timezone)
 dayjs.extend(utc)
-dayjs.extend(jalali)
-dayjs.calendar('jalali')
+dayjs.extend(calendarSystems)
+dayjs.registerCalendarSystem("persian", new PersianCalendarSystem());
 
 window.dayjs = dayjs
 
@@ -53,7 +54,7 @@ export default function jalaliDateTimePickerFormComponent({
         months: [],
 
         init: function () {
-            dayjs.locale(locale ?? 'en');
+            dayjs.locale(locales[locale]??locales['en']);
             this.focusedDate = dayjs().tz(timezone)
 
             let date =
@@ -382,7 +383,7 @@ export default function jalaliDateTimePickerFormComponent({
                 return null
             }
 
-            let date = dayjs(this.state)
+            let date = dayjs(this.state).toCalendarSystem("persian")
 
             if (!date.isValid()) {
                 return null
@@ -506,7 +507,7 @@ export default function jalaliDateTimePickerFormComponent({
                 .hour(this.hour ?? 0)
                 .minute(this.minute ?? 0)
                 .second(this.second ?? 0)
-                .calendar('gregory')
+                .toCalendarSystem('gregory')
                 .format('YYYY-MM-DD HH:mm:ss')
 
             this.setDisplayText()
