@@ -56,11 +56,11 @@ export default function jalaliDateTimePickerFormComponent({
 
         init: function () {
             dayjs.locale(locales[locale] ?? locales['en']);
-            this.focusedDate = dayjs().tz(timezone)
+            this.focusedDate = dayjs().toCalendarSystem("persian").tz(timezone)
 
             let date =
                 this.getSelectedDate() ??
-                dayjs().tz(timezone).hour(0).minute(0).second(0)
+                dayjs().toCalendarSystem("persian").tz(timezone).hour(0).minute(0).second(0)
 
             if (
                 this.getMaxDate() !== null &&
@@ -366,13 +366,13 @@ export default function jalaliDateTimePickerFormComponent({
         getMaxDate: function () {
             let date = dayjs(this.$refs.maxDate?.value)
 
-            return date.isValid() ? date : null
+            return date.isValid() ? date.toCalendarSystem("persian") : null
         },
 
         getMinDate: function () {
             let date = dayjs(this.$refs.minDate?.value)
 
-            return date.isValid() ? date : null
+            return date.isValid() ? date.toCalendarSystem("persian") : null
         },
 
         getSelectedDate: function () {
@@ -398,7 +398,7 @@ export default function jalaliDateTimePickerFormComponent({
                 this.focusedDate =
                     this.getSelectedDate() ??
                     this.getMinDate() ??
-                    dayjs().tz(timezone)
+                    dayjs().tz(timezone).toCalendarSystem("persian")
 
                 this.setupDaysGrid()
             }
