@@ -4,25 +4,29 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import localeData from 'dayjs/plugin/localeData'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
-import jalali from '@zoomit/dayjs-jalali-plugin'
+import calendarSystems from "@calidy/dayjs-calendarsystems";
+import PersianCalendarSystem from "@calidy/dayjs-calendarsystems/calendarSystems/PersianCalendarSystem";
 
 dayjs.extend(customParseFormat)
 dayjs.extend(localeData)
 dayjs.extend(timezone)
 dayjs.extend(utc)
-dayjs.extend(jalali)
-dayjs.calendar('jalali')
+dayjs.extend(calendarSystems)
+dayjs.registerCalendarSystem("persian", new PersianCalendarSystem());
 
 window.dayjs = dayjs
 
 export default function jalaliDateTimePickerFormComponent({
-                                                        displayFormat,
-                                                        firstDayOfWeek,
-                                                        isAutofocused,
-                                                        locale,
-                                                        shouldCloseOnDateSelection,
-                                                        state,
-                                                    }) {
+                                                              displayFormat,
+                                                              firstDayOfWeek,
+                                                              isAutofocused,
+                                                              locale,
+                                                              shouldCloseOnDateSelection,
+                                                              state,
+                                                              months,
+                                                              dayLabel,
+                                                              dayShortLabel
+                                                          }) {
     const timezone = dayjs.tz.guess()
 
     return {
@@ -47,18 +51,19 @@ export default function jalaliDateTimePickerFormComponent({
         second: null,
 
         state,
-
+        months,
         dayLabels: [],
+        dayLabel,
 
-        months: [],
+        dayShortLabel,
 
         init: function () {
-            dayjs.locale(locale ?? 'en');
-            this.focusedDate = dayjs().tz(timezone)
+            dayjs.locale(locales[locale] ?? locales['en']);
+            this.focusedDate = dayjs().toCalendarSystem("persian").tz(timezone)
 
             let date =
                 this.getSelectedDate() ??
-                dayjs().tz(timezone).hour(0).minute(0).second(0)
+                dayjs().toCalendarSystem("persian").tz(timezone).hour(0).minute(0).second(0)
 
             if (
                 this.getMaxDate() !== null &&
@@ -349,7 +354,21 @@ export default function jalaliDateTimePickerFormComponent({
         },
 
         getDayLabels: function () {
-            const labels = dayjs.weekdaysShort()
+            let flag = this.$el.dataset.weekdaysShort;
+            let labels = [];
+            if (flag === 'short') {
+                if (typeof this.dayShortLabel !== 'object') {
+                    labels = dayjs.weekdaysShort()
+                } else {
+                    labels = Object.values(this.dayShortLabel);
+                }
+            } else {
+                if (typeof this.dayLabel !== 'object') {
+                    labels = dayjs.weekdays()
+                } else {
+                    labels = Object.values(this.dayLabel);
+                }
+            }
 
             if (firstDayOfWeek === 0) {
                 return labels
@@ -364,13 +383,13 @@ export default function jalaliDateTimePickerFormComponent({
         getMaxDate: function () {
             let date = dayjs(this.$refs.maxDate?.value)
 
-            return date.isValid() ? date : null
+            return date.isValid() ? date.toCalendarSystem("persian") : null
         },
 
         getMinDate: function () {
             let date = dayjs(this.$refs.minDate?.value)
 
-            return date.isValid() ? date : null
+            return date.isValid() ? date.toCalendarSystem("persian") : null
         },
 
         getSelectedDate: function () {
@@ -382,7 +401,7 @@ export default function jalaliDateTimePickerFormComponent({
                 return null
             }
 
-            let date = dayjs(this.state)
+            let date = dayjs(this.state).toCalendarSystem("persian")
 
             if (!date.isValid()) {
                 return null
@@ -396,7 +415,7 @@ export default function jalaliDateTimePickerFormComponent({
                 this.focusedDate =
                     this.getSelectedDate() ??
                     this.getMinDate() ??
-                    dayjs().tz(timezone)
+                    dayjs().tz(timezone).toCalendarSystem("persian")
 
                 this.setupDaysGrid()
             }
@@ -425,37 +444,7 @@ export default function jalaliDateTimePickerFormComponent({
         },
 
         setMonths: function () {
-            if (locale === 'en') {
-                this.months = [
-                    "Farvardin",
-                    "Ordibehesht",
-                    "Khordaad",
-                    "Tir",
-                    "Mordaad",
-                    "Shahrivar",
-                    "Mehr",
-                    "Aabaan",
-                    "Aazar",
-                    "Dey",
-                    "Bahman",
-                    "Esfand"
-                ];
-            } else if (locale === 'fa') {
-                this.months = [
-                    "فروردین",
-                    "اردیبهشت",
-                    "خرداد",
-                    "تیر",
-                    "مرداد",
-                    "شهریور",
-                    "مهر",
-                    "آبان",
-                    "آذر",
-                    "دی",
-                    "بهمن",
-                    "اسفند"
-                ];
-            } else {
+            if (typeof this.months !== 'object' || !Array.isArray(this.months) || this.months === null) {
                 this.months = dayjs.months()
             }
         },
@@ -506,7 +495,7 @@ export default function jalaliDateTimePickerFormComponent({
                 .hour(this.hour ?? 0)
                 .minute(this.minute ?? 0)
                 .second(this.second ?? 0)
-                .calendar('gregory')
+                .toCalendarSystem('gregory')
                 .format('YYYY-MM-DD HH:mm:ss')
 
             this.setDisplayText()

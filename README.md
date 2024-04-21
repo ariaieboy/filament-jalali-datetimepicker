@@ -37,9 +37,30 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Upgrading
 
+### v2 to v3
+
+- step 1: Change the package version in your `composer.json` to `^3` and run the composer update command:
+
+```
+        "ariaieboy/filament-jalali-datetimepicker": "^3",
+```
+
+- step 2 : If you using the `JalaliDateTimePicker` or `JalaliDatePicker` classes you should remove those and use the default Filament DatePicker class. 
+  - For more info check the step 2 of the v1 to v2 upgrade guide.
+- step 3 (optional) : in V3 we introduced 2 new lang files called `months` and `days` using these 2 file you can customize the months and days labels.
+  - To customize the lang files you can use this command:
+    - `php artisan vendor:publish --tag=filament-jalali-datetimepicker-translations`
+- backward compatibility checks:
+  - in V3 we changed some default values if you want to customize these values, you should use the methods after the `jalali` method.
+    1. The default day label is `long` to change this you should pass `true` as the first `jalali(weekdaysShort: true)` argument.
+    2. We changed the default start of the week to `saturday`
+    3. the default format is changed to `Y-m-d` and `Y-m-d H:i:s` for `datePicker` and `dateTimePicker`
+  - We changed the underlying package that provide jalali compatibility for dayjs to `@calidy/dayjs-calendarsystems`
+  - In V3 we only support `laravel >= 11` and `php >= 8.2`
+
 ### v1 to v2
 
-- step 1:Change the package version in you `composer.json` to `^2` and run the composer update command:
+- step 1:Change the package version in your `composer.json` to `^2` and run the composer update command:
 
 ```
         "ariaieboy/filament-jalali-datetimepicker": "^2",
