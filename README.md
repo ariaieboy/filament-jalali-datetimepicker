@@ -46,7 +46,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ```
 
 - step 2 : If you using the `JalaliDateTimePicker` or `JalaliDatePicker` classes you should remove those and use the default Filament DatePicker class. 
-  - For more info check the step 2 of the v1 to v2 upgrade guide.
+  - For more info check the step 2 of the [v1 to v2](https://github.com/ariaieboy/filament-jalali-datetimepicker?tab=readme-ov-file#v1-to-v2) upgrade guide.
 - step 3 (optional) : in V3 we introduced 2 new lang files called `months` and `days` using these 2 file you can customize the months and days labels.
   - To customize the lang files you can use this command:
     - `php artisan vendor:publish --tag=filament-jalali-datetimepicker-translations`
