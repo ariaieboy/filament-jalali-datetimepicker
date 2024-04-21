@@ -9,7 +9,7 @@ namespace Filament\Forms\Components {
         /**
          * @source FilamentJalaliDatetimepickerServiceProvider.php:21
          */
-        public function jalali(): self
+        public function jalali(bool $weekdaysShort = false): self
         {
             return $this;
         }
@@ -20,7 +20,7 @@ namespace Filament\Forms\Components {
         /**
          * @source FilamentJalaliDatetimepickerServiceProvider.php:25
          */
-        public function jalali(): self
+        public function jalali(bool $weekdaysShort = false): self
         {
             return $this;
         }

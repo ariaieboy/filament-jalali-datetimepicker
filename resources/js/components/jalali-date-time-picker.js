@@ -23,7 +23,9 @@ export default function jalaliDateTimePickerFormComponent({
                                                               locale,
                                                               shouldCloseOnDateSelection,
                                                               state,
-                                                              months
+                                                              months,
+                                                              dayLabel,
+                                                              dayShortLabel
                                                           }) {
     const timezone = dayjs.tz.guess()
 
@@ -49,10 +51,11 @@ export default function jalaliDateTimePickerFormComponent({
         second: null,
 
         state,
-
-        dayLabels: [],
-
         months,
+        dayLabels: [],
+        dayLabel,
+
+        dayShortLabel,
 
         init: function () {
             dayjs.locale(locales[locale] ?? locales['en']);
@@ -352,9 +355,19 @@ export default function jalaliDateTimePickerFormComponent({
 
         getDayLabels: function () {
             let flag = this.$el.dataset.weekdaysShort;
-            let labels = dayjs.weekdays()
-            if (flag){
-                labels = dayjs.weekdaysShort()
+            let labels = [];
+            if (flag === 'short') {
+                if (typeof this.dayShortLabel !== 'object') {
+                    labels = dayjs.weekdaysShort()
+                } else {
+                    labels = Object.values(this.dayShortLabel);
+                }
+            } else {
+                if (typeof this.dayLabel !== 'object') {
+                    labels = dayjs.weekdays()
+                } else {
+                    labels = Object.values(this.dayLabel);
+                }
             }
 
             if (firstDayOfWeek === 0) {
