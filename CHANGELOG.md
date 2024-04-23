@@ -2,6 +2,10 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 3.0.1 - 2024-04-23
+
+**Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/3.0.0...3.0.1
+
 ## 3.0.0 - 2024-04-21
 
 > Note: check the upgrade guide on the [readme ](https://github.com/ariaieboy/filament-jalali-datetimepicker?tab=readme-ov-file#v2-to-v3)of the repo
