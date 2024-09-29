@@ -2,6 +2,12 @@
 
 All notable changes to `filament-jalali-datetimepicker` will be documented in this file.
 
+## 3.0.2 - 2024-09-29
+
+- add php 8.4 to composer.json
+
+**Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/3.0.1...3.0.2
+
 ## 3.0.1 - 2024-04-23
 
 **Full Changelog**: https://github.com/ariaieboy/filament-jalali-datetimepicker/compare/3.0.0...3.0.1
