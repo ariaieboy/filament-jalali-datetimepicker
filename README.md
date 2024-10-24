@@ -1,3 +1,5 @@
+# This package is no longer maintained please upgrade to [ariaieboy/filament-jalali](https://github.com/ariaieboy/filament-jalali)
+
 # Filament Jalali Date Time Picker Field
 
 ![Ariaieboy Jalali Date Picker](https://preview.dragon-code.pro/Ariaieboy/Jalali-Date-Picker.svg?brand=laravel)
